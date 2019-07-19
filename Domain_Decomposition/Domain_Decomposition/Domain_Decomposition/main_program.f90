@@ -1,6 +1,7 @@
 !***This program highlights how to solve the poisson PDE using a domain
 !   decomposition approach defined on a square mesh.   
-    
+
+#ifdef normal
 Program domain_decomposition
 
     Use MPI    
@@ -8,12 +9,12 @@ Program domain_decomposition
     
     Implicit None
    
-    Integer :: i, j, n, ierr, nx, ny
+    Integer :: i, j, n, ierr, nx, ny, k, max_iter
     Double precision :: h
     Integer :: nbr_west, nbr_east, nbr_north, nbr_south
     Integer :: start_x, start_y, end_x, end_y ! Bounds for each processors subdomain
     Integer, dimension(2) :: virtual_coords
-    Integer :: send_count 
+    Integer :: row_type 
     !***Call MPI Initialization
     
     Call Setup_MPI(process_id, master_id, num_proc)
@@ -21,7 +22,7 @@ Program domain_decomposition
     !***Size of global domain
     nx = 8  
     ny = nx  ! Square for now
-    
+    max_iter = 100 ! max # of iterations to prevent from never finishing a loop
     ndim = 2 ! # of dimensions
     
     !***Setup sizing of each dimensions x,y -
@@ -58,27 +59,45 @@ Program domain_decomposition
     
     !***Computes the decomposition
     Call Decomp_2d(nx, ny, virtual_coords, start_x, start_y, end_x, end_y) 
+   
     
-    print *,'Start x: ', start_x, 'proc=',process_id
-    print *,'Start y: ', start_y, 'proc=',process_id
-    print *,'End x:   ', end_x,   'proc=',process_id
-    print *,'End y:   ', end_y,   'proc=',process_id
-    print *,' '
+    !print *,'Start x: ', start_x, 'proc=',process_id
+    !print *,'Start y: ', start_y, 'proc=',process_id
+    !print *,'End x:   ', end_x,   'proc=',process_id
+    !print *,'End y:   ', end_y,   'proc=',process_id
+    !print *,' '
    
     !***Allocate variables based on individual sizing for each array
     Allocate(u    (nx , ny)  )
     Allocate(u_new(nx , ny)  )
     Allocate(f    (nx , ny)  )
     
-    u(:,:) = 0.0d0
+    u(:,:)     = 0.0d0
     u_new(:,:) = 0.0d0
-    f(:,:) = 0.0d0
+    f(:,:)     = 0.0d0
     
     !***Initialize RHS u_new and guess 'u'
     Call Init_2d(start_x, start_y, end_x, end_y, nx, ny)
 
+    !***Main calculation loop
+    do k = 1, max_iter
     
+        !***Exchange boundary data for U
+        Call Exchange_2d(u, row_type, start_x, end_x, start_y, end_y, &
+                         nbr_south, nbr_north, nbr_east, nbr_west  )
+        !***Calculate U using previous
+         
+    
+        !***Calculate U_new
+    
+    
+        !***Compare difference
+    
+    end do
+   
+    Call MPI_Type_Free(row_type, ierr) 
     Call MPI_Barrier(comm_2d, ierr)
     Call MPI_Finalize(ierr)
    
 End program domain_decomposition
+#endif 
