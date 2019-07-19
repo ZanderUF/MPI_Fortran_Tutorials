@@ -35,7 +35,7 @@
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|x64">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" MultiProcessorCompilation="true" Optimization="optimizeFull" AdditionalIncludeDirectories="$(I_MPI_ROOT)\intel64\include"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" MultiProcessorCompilation="true" Optimization="optimizeFull" AdditionalIncludeDirectories="$(I_MPI_ROOT)\intel64\include" Traceback="true"/>
 				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" AdditionalLibraryDirectories="$(I_MPI_ROOT)\intel64\lib\release" SubSystem="subSystemConsole" AdditionalDependencies="impi.lib "/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TargetEnvironment="midlTargetAMD64"/>
@@ -49,7 +49,9 @@
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\Calc_u_new.f90"/>
+		<File RelativePath=".\Decomp_2d.f90"/>
 		<File RelativePath=".\Global_Vars.f90"/>
+		<File RelativePath=".\Initialize_2d.f90"/>
 		<File RelativePath=".\main_program.f90"/>
 		<File RelativePath=".\Setup_MPI.f90"/></Filter></Files>
 	<Globals/></VisualStudioProject>
