@@ -35,7 +35,27 @@
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|x64">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" MultiProcessorCompilation="true" Optimization="optimizeFull" AdditionalIncludeDirectories="$(I_MPI_ROOT)\intel64\include" Traceback="true"/>
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="-free" SuppressStartupBanner="true" MultiProcessorCompilation="true" Optimization="optimizeFull" Preprocess="preprocessYes" AdditionalIncludeDirectories="$(I_MPI_ROOT)\intel64\include" PreprocessorDefinitions="normal" CallingConvention="callConventionCRef" Traceback="true"/>
+				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" AdditionalLibraryDirectories="$(I_MPI_ROOT)\intel64\lib\release" SubSystem="subSystemConsole" AdditionalDependencies="impi.lib "/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TargetEnvironment="midlTargetAMD64"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/>
+				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
+		<Configuration Name="Unit_Testing|Win32">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" RuntimeLibrary="rtMultiThreadedDLL"/>
+				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" SubSystem="subSystemConsole"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/>
+				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
+		<Configuration Name="Unit_Testing|x64">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="-free" SuppressStartupBanner="true" MultiProcessorCompilation="true" Optimization="optimizeFull" Preprocess="preprocessYes" AdditionalIncludeDirectories="$(I_MPI_ROOT)\intel64\include" PreprocessorDefinitions="testing" CallingConvention="callConventionCRef" Traceback="true"/>
 				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" AdditionalLibraryDirectories="$(I_MPI_ROOT)\intel64\lib\release" SubSystem="subSystemConsole" AdditionalDependencies="impi.lib "/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TargetEnvironment="midlTargetAMD64"/>
@@ -48,10 +68,20 @@
 		<Filter Name="Header Files" Filter="fi;fd;h;inc"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<Filter Name="tests">
+		<File RelativePath=".\assert_mod.F90"/>
+		<File RelativePath=".\log_mod.F90"/>
+		<File RelativePath=".\string_mod.F90"/>
+		<File RelativePath=".\test_case_mod.F90"/>
+		<File RelativePath=".\test_main.f90"/>
+		<File RelativePath=".\unit_test.F90"/></Filter>
 		<File RelativePath=".\Calc_u_new.f90"/>
+		<File RelativePath=".\Create_Row_Datatype.f90"/>
 		<File RelativePath=".\Decomp_2d.f90"/>
+		<File RelativePath=".\Exchange_2d.f90"/>
 		<File RelativePath=".\Global_Vars.f90"/>
-		<File RelativePath=".\Initialize_2d.f90"/>
+		<File RelativePath=".\Init_2d.f90"/>
 		<File RelativePath=".\main_program.f90"/>
-		<File RelativePath=".\Setup_MPI.f90"/></Filter></Files>
+		<File RelativePath=".\Setup_MPI.f90"/>
+		<File RelativePath=".\Sweep_2d.f90"/></Filter></Files>
 	<Globals/></VisualStudioProject>
