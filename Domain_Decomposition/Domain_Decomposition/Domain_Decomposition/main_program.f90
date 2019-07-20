@@ -59,7 +59,6 @@ Program domain_decomposition
     
     !***Computes the decomposition
     Call Decomp_2d(nx, ny, virtual_coords, start_x, start_y, end_x, end_y) 
-   
     
     !print *,'Start x: ', start_x, 'proc=',process_id
     !print *,'Start y: ', start_y, 'proc=',process_id
@@ -75,6 +74,8 @@ Program domain_decomposition
     u(:,:)     = 0.0d0
     u_new(:,:) = 0.0d0
     f(:,:)     = 0.0d0
+
+    Call MPI_Barrier(comm_2d, ierr)
     
     !***Initialize RHS u_new and guess 'u'
     Call Init_2d(start_x, start_y, end_x, end_y, nx, ny)

@@ -1,5 +1,18 @@
 ! Subroutine to handle to decomposition of the domain
 ! Returns start_x, start_y, end_x, end_y
+   
+!    *_ _ _ _ **_ _ _ _ *
+!    |        ||        |
+!    |        ||        |
+!    |  P1    ||  P3    |
+!    |        ||        |
+!    *_ _ _ _ **_ _ _ _ *
+!    *_ _ _ _ **_ _ _ _ *
+!    |        ||        |  
+!    |  P0    ||  P2    |  
+!    |        ||        |  
+!    |        ||        |  
+!    *_ _ _ _ **_ _ _ _ *  
     
 Subroutine Decomp_2d(nx, ny, virtual_coords, start_x, start_y, end_x, end_y)
 
