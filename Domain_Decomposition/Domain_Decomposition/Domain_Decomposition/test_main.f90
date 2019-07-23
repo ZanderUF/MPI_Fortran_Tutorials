@@ -86,7 +86,7 @@ Program test_harness
     !***Test MPI Exchange routine
     Call test_case_create('2D MPI Exchange Routine', test_suite_mpi_exchange)
 
-    Call Create_Row_Data_Type(row_type, start_x, end_x, start_y, end_y)
+    Call Create_Row_Data_Type(row_type, start_x, end_x, start_y, end_y,ny)
     !***Test if the row data type was setup correctly
     expected_size_row_vec = (end_x - start_x + 1 )*sizeof(1.0d0) 
     Call MPI_Type_Size(row_type, size_row_type, ierr) !***Get size in bytes of the data type we just created

@@ -46,11 +46,13 @@ Subroutine Exchange_2d(row_type, start_x, end_x, start_y, end_y)
         !end if
                           
         !***Send rows North --> South
-        !   Call MPI_sendrecv(u_new(start_x,start_y),   1, row_type, nbr_south, 1, &
-        !                     u_new(start_x,start_y-1), 1, row_type, nbr_north, 1, &
+        !   Call MPI_sendrecv(u_new(end_y,     start_x-1), 1, row_type, nbr_north, 1, &
+        !                     u_new(start_y+1, start_x-1), 1, row_type, nbr_south, 1, &
         !                     comm_2d, MPI_Status_Ignore, ierr)
         
         !***Send rows South --> North
-
+        !    Call MPI_sendrecv(u_new(start_y,  start_x-1), 1, row_type, nbr_south, 1, &
+        !                      u_new(end_y-1, start_x-1), 1, row_type,  nbr_north, 1, &
+        !                     comm_2d, MPI_Status_Ignore, ierr)
         
 End subroutine Exchange_2d
