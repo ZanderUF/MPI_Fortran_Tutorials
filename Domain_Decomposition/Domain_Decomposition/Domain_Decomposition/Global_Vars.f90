@@ -3,6 +3,7 @@ Module Global_vars
     Implicit none
     
     !***
+    Integer, dimension(2) :: virtual_coords
     Integer :: process_id, master_id, num_proc
     Integer :: comm_2d ! Integer communicator
     Integer :: ndim    ! Dimension of the problem
